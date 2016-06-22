@@ -15,8 +15,13 @@ public class SalesTax {
 		
 		//get user input, prompt user for purchase amount
 		Scanner keyboard = new Scanner(System.in);
-		System.out.println("Enter the purchase price:");
-		purchase_amount = keyboard.nextDouble();
+		do{
+			System.out.println("Enter the purchase price:");
+			purchase_amount = keyboard.nextDouble();
+			if (purchase_amount <= 0){
+				System.out.println("Purchase price must be greater than zero");
+			}
+		} while (purchase_amount <= 0);
 		
 		//perform calculation
 		federal = purchase_amount*FEDERAL;
@@ -24,7 +29,7 @@ public class SalesTax {
 		tax_total = federal + state;
 		
 		//output
-		System.out.println("Purchase amount: $" + purchase_amount);
+		System.out.println("Purchase amount: $" + df.format(purchase_amount));
 		System.out.println("Federal tax: $" + df.format(federal));
 		System.out.println("City tax: $" + df.format(state));
 		System.out.println("Total tax: $" + df.format(tax_total));
